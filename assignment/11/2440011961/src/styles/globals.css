@@ -1,0 +1,204 @@
+/* src/styles/globals.css */
+
+/* Basic Box Model & Font Reset */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  line-height: 1.6;
+  font-size: 16px; /* Base font size, good for mobile */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+}
+
+/* Global Dark Mode Styles */
+html[data-theme="dark"] {
+  background-color: #282c34; /* Dark background */
+  color: #e0e0e0; /* Light text */
+}
+
+html[data-theme="light"] {
+  background-color: #f5f5f5; /* Light background */
+  color: #333; /* Dark text */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Main Container Styles */
+.task-app-container { /* Added a class name for the main div in index.js for better styling */
+    padding: 15px; /* Mobile-first padding */
+    min-height: 100vh;
+    background-color: var(--background-color); /* Use CSS variables if set up */
+    color: var(--text-color);
+}
+
+main {
+  max-width: 600px;
+  margin: 20px auto; /* Mobile-first margin */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Softer shadow */
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: white; /* Default light mode background for main content area */
+}
+
+html[data-theme="dark"] main {
+    background-color: #3b424d; /* Darker background for main content in dark mode */
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  padding-top: 20px;
+  color: inherit; /* Inherit color from parent */
+}
+
+/* Task Form Styles */
+form {
+  display: flex;
+  flex-direction: column; /* Stack elements on small screens */
+  gap: 10px;
+  padding: 0 20px 20px; /* Padding for the form section */
+}
+
+input[type="text"] {
+  flex-grow: 1; /* Allows input to expand */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+}
+
+html[data-theme="dark"] input[type="text"] {
+    background-color: #555;
+    color: #eee;
+    border-color: #666;
+}
+
+form button {
+  width: 100%; /* Full width for button on small screens */
+  padding: 10px 15px;
+  background-color: #007bff; /* Primary blue */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* Task Item Styles (used by TaskItem.js) */
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px; /* More padding for touch targets */
+    border-bottom: 1px solid #eee;
+    background-color: white; /* Default light mode */
+    transition: background-color 0.3s ease;
+}
+
+html[data-theme="dark"] .task-item {
+    background-color: #4a515e; /* Dark mode for task item */
+    border-color: #5a6270;
+}
+
+.task-item:last-child {
+    border-bottom: none; /* No border on the last item */
+}
+
+.task-item-title {
+    flex-grow: 1;
+    cursor: pointer;
+    font-size: 1rem;
+    word-break: break-word; /* Prevent long words from overflowing */
+    padding-right: 10px; /* Space between title and actions */
+}
+
+.task-item-completed {
+    text-decoration: line-through;
+    color: #888; /* Dim completed tasks */
+}
+
+html[data-theme="dark"] .task-item-completed {
+     color: #aaa;
+}
+
+.task-item-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0; /* Prevent actions from shrinking */
+}
+
+.task-item-checkbox {
+    cursor: pointer;
+    width: 20px; /* Larger checkbox for easier tapping */
+    height: 20px;
+    accent-color: #007bff; /* Color the checkbox */
+}
+
+.task-item-delete-btn {
+    padding: 6px 12px; /* Slightly larger button */
+    background-color: #dc3545; /* Red */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.task-item-delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Empty tasks message */
+.empty-tasks-message {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+html[data-theme="dark"] .empty-tasks-message {
+    color: #bbb;
+}
+
+/* Responsive Adjustments (Media Queries) */
+@media (min-width: 600px) {
+  /* Adjust main container for wider screens */
+  main {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  /* Adjust form layout for wider screens */
+  form {
+    flex-direction: row; /* Input and button side-by-side */
+  }
+  form button {
+    width: auto; /* Button takes natural width */
+  }
+}
+
+/* Optional: Hide scrollbar but allow scrolling on specific elements */
+.hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
